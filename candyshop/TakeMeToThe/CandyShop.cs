@@ -8,11 +8,17 @@ namespace TakeMeToThe
 {
     class CandyShop
     {
+        internal static readonly object CANDY;
         private int sugarInventory;
 
         public CandyShop(int sugar)
         {
-            this.sugarInventory = sugar;
+            sugarInventory = sugar;
+        }
+
+        internal void BuySugar(int sugar)
+        {
+            sugarInventory += sugar;
         }
     }
 }
