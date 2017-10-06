@@ -13,7 +13,7 @@ namespace UniqueChars
             // Print the characters from that list in the following format:
             // "n", "g", "r", "m"
 
-            List<string> result = UniqueCharacters("hello");
+            List<string> result = UniqueCharacters("doggy");
             result.ForEach(s => Console.WriteLine(Convert.ToString(s)));
             
             Console.ReadKey();
@@ -28,7 +28,14 @@ namespace UniqueChars
             }
             foreach (char character in inputString)
             {
-                result.Add(Convert.ToString(character));
+                if (result.Contains(Convert.ToString(character)))
+                {
+                    result.Remove(Convert.ToString(character));
+                }
+                else
+                {
+                    result.Add(Convert.ToString(character));
+                }
             }
             return result;
         }

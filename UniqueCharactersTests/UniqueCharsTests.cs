@@ -28,5 +28,14 @@ namespace UniqueCharactersTests
             List<string> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
             Assert.AreEqual(receivedResult, expectedResult);
         }
+
+        [Test]
+        public void InputStringDoubleUniqueChars()
+        {
+            string input = "doggy";
+            List<string> expectedResult = new List<string>() { "d", "o", "y" };
+            List<string> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
+            Assert.AreEqual(receivedResult, expectedResult);
+        }
     }
 }
