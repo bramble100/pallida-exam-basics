@@ -13,6 +13,10 @@ namespace TakeMeToThe
         private int sugarInventory;
         private int money;
         Dictionary<Type, int> inventoryOfSweets = new Dictionary<Type, int>();
+
+        // One lollipop's price is 10$
+        // One candie's price is 20$
+
         Dictionary<Type, int> prices = new Dictionary<Type, int>()
         {
             {typeof(Candy), 20 },
@@ -21,6 +25,7 @@ namespace TakeMeToThe
 
         public CandyShop(int sugar)
         {
+            // The constructor should take the amount of sugar in gramms.
             sugarInventory = sugar;
         }
 
@@ -31,6 +36,8 @@ namespace TakeMeToThe
 
         internal void CreateSweets(Sweet sweet)
         {
+            // If we create a candie or lollipop the CandyShop's sugar amount gets reduced by the amount needed to create the sweets
+
             if (inventoryOfSweets.ContainsKey(sweet.GetType()))
             {
                 if (sugarInventory > sweet.SugarRequired)
@@ -53,18 +60,23 @@ namespace TakeMeToThe
 
         internal void Sell(Sweet sweet, int quantity)
         {
+            // We can sell candie or lollipop with a given number as amount
+            // If we sell sweets the income will be increased by the price of the sweets and we delete it from the inventory
+
             if (inventoryOfSweets.ContainsKey(sweet.GetType()))
             {
-                if (inventoryOfSweets[sweet.GetType()] > 0)
+                if (inventoryOfSweets[sweet.GetType()] >= quantity)
                 {
-                    inventoryOfSweets[sweet.GetType()]--;
-                    money += prices[sweet.GetType()];
+                    inventoryOfSweets[sweet.GetType()] -= quantity;
+                    money += prices[sweet.GetType()]* quantity;
                 }
             }
         }
 
         internal void Raise(int raisePercentage)
         {
+            // We can raise the prices of all candies and lollipops with a given percentage
+
             prices[typeof(Candy)] *= (1 + raisePercentage);
             prices[typeof(Lollipop)] *= (1 + raisePercentage);
         }
