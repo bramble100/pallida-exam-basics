@@ -30,7 +30,6 @@ namespace TakeMeToThe
             // The constructor should take the amount of sugar in gramms.
             sugarInventory = sugar;
             Console.WriteLine("CandyShop created.");
-            Console.WriteLine(ToString());
         }
 
         internal void BuySugar(int sugar)
@@ -42,12 +41,10 @@ namespace TakeMeToThe
                 sugarInventory += sugar;
                 money -= sugar * sugarPrice;
                 Console.WriteLine($"{sugar}g sugar bought for {sugar * sugarPrice}");
-                Console.WriteLine(ToString());
             }
             else
             {
                 Console.WriteLine($"Not enough money for buying {sugar}g sugar ({sugar * sugarPrice} needed, but only {money} available).");
-                Console.WriteLine(ToString());
             }
         }
 
@@ -64,12 +61,10 @@ namespace TakeMeToThe
                 inventoryOfSweets[sweet.GetType()]++;
                 sugarInventory -= sweet.SugarRequired;
                 Console.WriteLine($"One pcs of {sweet.GetType().Name} created");
-                Console.WriteLine(ToString());
             }
             else
             {
                 Console.WriteLine($"No {sweet.GetType().Name} created");
-                Console.WriteLine(ToString());
             }
         }
 
@@ -91,7 +86,6 @@ namespace TakeMeToThe
                     money += prices[sweet.GetType()]* quantity;
 
                     Console.WriteLine($"{quantity} pcs of {sweet.GetType().Name} sold for {prices[sweet.GetType()]*quantity}");
-                    Console.WriteLine(ToString());
 
                 }
             }
@@ -103,7 +97,7 @@ namespace TakeMeToThe
 
             prices[typeof(Candy)] *= (100 + raisePercentage)/100;
             prices[typeof(Lollipop)] *= (100 + raisePercentage)/100;
-            Console.WriteLine($"The prices are raised by {raisePercentage}%, new prices are: Candy:{prices[typeof(Candy)]} and Lollipop: {prices[typeof(Lollipop)]}");
+            Console.WriteLine($"The prices are raised by {raisePercentage}% (new prices are: Candy: {prices[typeof(Candy)]} and Lollipop: {prices[typeof(Lollipop)]})");
         }
 
         public override string ToString()
