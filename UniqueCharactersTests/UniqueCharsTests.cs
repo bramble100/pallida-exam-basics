@@ -14,9 +14,17 @@ namespace UniqueCharactersTests
         [Test]
         public void EmptyInputString()
         {
+            string input = "";
+            List<string> expectedResult = new List<string>();
+            List<string> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
+            Assert.AreEqual(receivedResult, expectedResult);
+        }
 
-            string input = "hello";
-            List<string> expectedResult = new List<string>() { "h", "e", "o" };
+        [Test]
+        public void InputStringOnlyUniqueChars()
+        {
+            string input = "dog";
+            List<string> expectedResult = new List<string>() { "d", "o", "g" };
             List<string> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
             Assert.AreEqual(receivedResult, expectedResult);
         }

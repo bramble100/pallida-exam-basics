@@ -26,6 +26,10 @@ namespace UniqueChars
             {
                 return result;
             }
+            foreach (char character in inputString)
+            {
+                result.Add(Convert.ToString(character));
+            }
             return result;
         }
     }
