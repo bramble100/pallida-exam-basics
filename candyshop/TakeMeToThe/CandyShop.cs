@@ -25,10 +25,10 @@ namespace TakeMeToThe
 
         internal void CreateSweets(Sweet sweet)
         {
-            if (sugarInventory > sweet.sugarRequired)
+            if (sugarInventory > sweet.SugarRequired)
             {
                 Add(sweet);
-                sugarInventory -= sweet.sugarRequired;
+                sugarInventory -= sweet.SugarRequired;
             }
         }
 

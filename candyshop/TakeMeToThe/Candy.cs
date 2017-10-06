@@ -8,5 +8,10 @@ namespace TakeMeToThe
 {
     class Candy : Sweet
     {
+        public Candy()
+        {
+            Price = 20;
+            SugarRequired = 10;
+        }
     }
 }

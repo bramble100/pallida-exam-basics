@@ -2,7 +2,10 @@
 {
     public abstract class Sweet
     {
-         public int price;
-         public readonly int sugarRequired;
+        private int price;
+        private int sugarRequired;
+
+        public  int Price { get => price; set => price = value; }
+        public int SugarRequired { get => sugarRequired; protected set => sugarRequired = value; }
     }
 }
