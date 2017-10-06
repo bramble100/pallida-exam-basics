@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace FavouriteAnimals
 {
@@ -20,12 +21,33 @@ namespace FavouriteAnimals
             if (args.Length == 0)
             {
                 Console.WriteLine("FavouriteAnimals usage:\nC# FavouriteAnimals [animal] [animal]");
+                Console.WriteLine();
+
+                string[] animals = File.ReadAllLines("favourites.txt");
+                if(animals.Length == 0)
+                {
+                    Console.WriteLine("There are no animals in the file currently");
+                }
+                else
+                {
+                    Console.WriteLine("Actual favourite animal(s) in the file");
+                    foreach (string animal in animals)
+                    {
+                        Console.WriteLine(animal);
+                    }
+                }
             }
             else
             {
                 HashSet<string> animals = new HashSet<string>(args);
+                using (StreamWriter writer = new StreamWriter("favourites.txt"))
+                {
+                    foreach (string animal in animals)
+                    {
+                        writer.WriteLine(animal);
+                    }
+                }
             }
-
         }
     }
 }
