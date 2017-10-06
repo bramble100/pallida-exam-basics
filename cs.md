@@ -31,9 +31,14 @@ The application is accepted if:
 ## 4. Question time! (~10 mins) [4p]
 
 ###  What is the difference between a function and a method? [2p]
-#### Your answer:
-[add your answer here]
+A **function** is a piece of code that is called by name. It can be passed data to operate on (i.e. the parameters) and can optionally return data (the return value). All data that is passed to a function is explicitly passed.
+
+A **method** is a piece of code that is called by a name that is associated with an object. In most respects it is identical to a function except for two key differences:
+1. A method is implicitly passed the object on which it was called.
+2. A method is able to operate on data that is contained within the class (remembering that an object is an instance of a class - the class is the definition, the object is an instance of that data).
+
+C# is an OOP language and doesn't have functions that are declared outside of classes, that's why all functions in C# are actually methods.
 
 ### What is the constructor? When it is used? [2p]
-#### Your answer:
-[add your answer here]
+A **constructor** is a method in the class which gets executed *when its object is created (=instantiated)*.
+Usually, we put the initialization code in the constructor.
