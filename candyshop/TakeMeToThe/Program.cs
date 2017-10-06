@@ -17,7 +17,9 @@ namespace TakeMeToThe
             // It can store sugar and money as income. The constructor should take the amount of sugar in gramms.
             // we can create lollipops and candies store them in the CandyShop's storage
             // If we create a candie or lollipop the CandyShop's sugar amount gets reduced by the amount needed to create the sweets
+
             // We can raise the prices of all candies and lollipops with a given percentage
+            
             // We can sell candie or lollipop with a given number as amount
             // If we sell sweets the income will be increased by the price of the sweets and we delete it from the inventory
             // We can buy sugar with a given number as amount. The price of 1000gr sugar is 100$

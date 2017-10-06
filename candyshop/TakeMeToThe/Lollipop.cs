@@ -10,7 +10,6 @@ namespace TakeMeToThe
     {
         public Lollipop()
         {
-            Price = 10;
             SugarRequired = 5;
         }
     }

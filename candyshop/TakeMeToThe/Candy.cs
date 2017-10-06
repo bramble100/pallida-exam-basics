@@ -10,7 +10,6 @@ namespace TakeMeToThe
     {
         public Candy()
         {
-            Price = 20;
             SugarRequired = 10;
         }
     }

@@ -13,6 +13,11 @@ namespace TakeMeToThe
         private int sugarInventory;
         private int money;
         Dictionary<Type, int> inventoryOfSweets = new Dictionary<Type, int>();
+        Dictionary<Type, int> prices = new Dictionary<Type, int>()
+        {
+            {typeof(Candy), 20 },
+            {typeof(Lollipop), 10 }
+        };
 
         public CandyShop(int sugar)
         {
@@ -53,14 +58,15 @@ namespace TakeMeToThe
                 if (inventoryOfSweets[sweet.GetType()] > 0)
                 {
                     inventoryOfSweets[sweet.GetType()]--;
-                    money += sweet.Price;
+                    money += prices[sweet.GetType()];
                 }
             }
         }
 
         internal void Raise(int raisePercentage)
         {
-            throw new NotImplementedException();
+            prices[typeof(Candy)] *= (1 + raisePercentage);
+            prices[typeof(Lollipop)] *= (1 + raisePercentage);
         }
 
         public override string ToString()
