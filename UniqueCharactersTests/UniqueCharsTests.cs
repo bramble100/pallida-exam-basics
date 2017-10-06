@@ -26,7 +26,7 @@ namespace UniqueCharactersTests
             string input = "dog";
             List<string> expectedResult = new List<string>() { "d", "o", "g" };
             List<string> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
-            Assert.AreEqual(receivedResult, expectedResult);
+            Assert.AreEqual(expectedResult, receivedResult);
         }
 
         [Test]
@@ -35,7 +35,7 @@ namespace UniqueCharactersTests
             string input = "doggy";
             List<string> expectedResult = new List<string>() { "d", "o", "y" };
             List<string> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
-            Assert.AreEqual(receivedResult, expectedResult);
+            Assert.AreEqual(expectedResult, receivedResult);
         }
 
         [Test]
@@ -44,8 +44,16 @@ namespace UniqueCharactersTests
             string input = "dogggy";
             List<string> expectedResult = new List<string>() { "d", "o", "y" };
             List<string> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
-            Assert.AreEqual(receivedResult, expectedResult);
+            Assert.AreEqual(expectedResult, receivedResult);
         }
 
+        [Test]
+        public void InputStringMoreThanDoubleUniqueCharsWithSpace()
+        {
+            string input = "happy peace";
+            List<string> expectedResult = new List<string>() { "h", "y", "c" };
+            List<string> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
+            Assert.AreEqual(expectedResult, receivedResult);
+        }
     }
 }

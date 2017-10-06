@@ -27,7 +27,7 @@ namespace UniqueChars
                 return result;
             }
             HashSet<char> forbiddenChars = new HashSet<char>();
-            foreach (char character in inputString)
+            foreach (char character in inputString.Replace(" ",""))
             {
                 if (!forbiddenChars.Contains(character))
                 {
