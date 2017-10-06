@@ -22,19 +22,25 @@ namespace FavouriteAnimals
             {
                 Console.WriteLine("FavouriteAnimals usage:\nC# FavouriteAnimals [animal] [animal]");
                 Console.WriteLine();
-
-                string[] animals = File.ReadAllLines("favourites.txt");
-                if(animals.Length == 0)
+                try
                 {
-                    Console.WriteLine("There are no animals in the file currently");
-                }
-                else
-                {
-                    Console.WriteLine("Actual favourite animal(s) in the file");
-                    foreach (string animal in animals)
+                    string[] animals = File.ReadAllLines("../../../favourites.txt");
+                    if (animals.Length == 0)
                     {
-                        Console.WriteLine(animal);
+                        Console.WriteLine("There are no animals in the file currently");
                     }
+                    else
+                    {
+                        Console.WriteLine("Actual favourite animal(s) in the file");
+                        foreach (string animal in animals)
+                        {
+                            Console.WriteLine(animal);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message); ;
                 }
             }
             else
