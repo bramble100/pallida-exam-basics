@@ -1,8 +1,8 @@
 ﻿namespace TakeMeToThe
 {
-    public class Sweet
+    public abstract class Sweet
     {
-        int price;
-        public static int sugarContent;
+         public int price;
+         public readonly int sugarRequired;
     }
 }

@@ -8,8 +8,8 @@ namespace TakeMeToThe
 {
     class CandyShop : List<Sweet>
     {
-        internal static readonly Candy CANDY;
-        internal static readonly Lollipop LOLLIPOP;
+        internal static readonly Candy CANDY = new Candy();
+        internal static readonly Lollipop LOLLIPOP = new Lollipop();
         private int sugarInventory;
         private int money;
 
@@ -25,12 +25,16 @@ namespace TakeMeToThe
 
         internal void CreateSweets(Sweet sweet)
         {
-            throw new NotImplementedException();
+            if (sugarInventory > sweet.sugarRequired)
+            {
+                Add(sweet);
+                sugarInventory -= sweet.sugarRequired;
+            }
         }
 
         internal void PrintInfo()
         {
-            throw new NotImplementedException();
+            Console.WriteLine(ToString());
         }
 
         internal void Sell(Sweet sweet, int quantity)
@@ -41,6 +45,17 @@ namespace TakeMeToThe
         internal void Raise(int raisePercentage)
         {
             throw new NotImplementedException();
+        }
+
+        public override string ToString()
+        {
+            // The CandyShop should print properties represented as string in this format:
+            // "Inventory: 3 candies, 2 lollipops, Income: 100, Sugar: 400gr"
+
+            return $"Inventory:"
+                + $" {FindAll(sweet => sweet.GetType() == typeof(Candy)).Count} candies"
+                + $", {FindAll(sweet => sweet.GetType() == typeof(Lollipop)).Count} lollipops"
+                + $", Income {money}, Sugar: {sugarInventory}gr";
         }
     }
 }
