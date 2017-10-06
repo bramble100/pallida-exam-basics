@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace TakeMeToThe
 {
-    class CandyShop : List<Sweet>
+    class CandyShop
     {
         internal static readonly Candy CANDY = new Candy();
         internal static readonly Lollipop LOLLIPOP = new Lollipop();
         private int sugarInventory;
         private int money;
+        Dictionary<Type, int> inventoryOfSweets = new Dictionary<Type, int>();
 
         public CandyShop(int sugar)
         {
@@ -25,11 +26,19 @@ namespace TakeMeToThe
 
         internal void CreateSweets(Sweet sweet)
         {
-            if (sugarInventory > sweet.SugarRequired)
+            if (inventoryOfSweets.ContainsKey(sweet.GetType()))
             {
-                Add(sweet);
-                sugarInventory -= sweet.SugarRequired;
+                if (sugarInventory > sweet.SugarRequired)
+                {
+                    inventoryOfSweets[sweet.GetType()]++;
+                    sugarInventory -= sweet.SugarRequired;
+                }
             }
+            else
+            {
+                inventoryOfSweets[sweet.GetType()] = 1;
+            }
+
         }
 
         internal void PrintInfo()
@@ -39,7 +48,14 @@ namespace TakeMeToThe
 
         internal void Sell(Sweet sweet, int quantity)
         {
-            throw new NotImplementedException();
+            if (inventoryOfSweets.ContainsKey(sweet.GetType()))
+            {
+                if (inventoryOfSweets[sweet.GetType()] > 0)
+                {
+                    inventoryOfSweets[sweet.GetType()]--;
+                    money += sweet.Price;
+                }
+            }
         }
 
         internal void Raise(int raisePercentage)
@@ -53,8 +69,8 @@ namespace TakeMeToThe
             // "Inventory: 3 candies, 2 lollipops, Income: 100, Sugar: 400gr"
 
             return $"Inventory:"
-                + $" {FindAll(sweet => sweet.GetType() == typeof(Candy)).Count} candies"
-                + $", {FindAll(sweet => sweet.GetType() == typeof(Lollipop)).Count} lollipops"
+                + $" {(inventoryOfSweets.ContainsKey(typeof(Candy)) ? inventoryOfSweets[typeof(Candy)] : 0)} candies"
+                + $" {(inventoryOfSweets.ContainsKey(typeof(Lollipop)) ? inventoryOfSweets[typeof(Lollipop)]: 0)} lollipops"
                 + $", Income {money}, Sugar: {sugarInventory}gr";
         }
     }
