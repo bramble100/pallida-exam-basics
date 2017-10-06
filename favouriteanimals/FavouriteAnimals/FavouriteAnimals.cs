@@ -18,20 +18,22 @@ namespace FavouriteAnimals
             // Each animal should be written in separate lines
             // The program should only save animals, no need to print them
 
+            string path = "../../../favourites.txt";
+
             if (args.Length == 0)
             {
                 Console.WriteLine("FavouriteAnimals usage:\nC# FavouriteAnimals [animal] [animal]");
                 Console.WriteLine();
                 try
                 {
-                    string[] animals = File.ReadAllLines("../../../favourites.txt");
+                    string[] animals = File.ReadAllLines(path);
                     if (animals.Length == 0)
                     {
-                        Console.WriteLine("There are no animals in the file currently");
+                        Console.WriteLine("There are no animals in the file currently.");
                     }
                     else
                     {
-                        Console.WriteLine("Actual favourite animal(s) in the file");
+                        Console.WriteLine("Actual favourite animal(s) in the file:");
                         foreach (string animal in animals)
                         {
                             Console.WriteLine(animal);
@@ -46,11 +48,18 @@ namespace FavouriteAnimals
             else
             {
                 HashSet<string> animals = new HashSet<string>(args);
-                using (StreamWriter writer = new StreamWriter("favourites.txt"))
+                using (StreamWriter writer = new StreamWriter(path))
                 {
-                    foreach (string animal in animals)
+                    try
                     {
-                        writer.WriteLine(animal);
+                        foreach (string animal in animals)
+                        {
+                            writer.WriteLine(animal);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
                     }
                 }
             }
