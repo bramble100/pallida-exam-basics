@@ -10,47 +10,67 @@ namespace TakeMeToThe
     {
         internal static readonly Candy CANDY = new Candy();
         internal static readonly Lollipop LOLLIPOP = new Lollipop();
+        // The price of 1000gr sugar is 100$
+        private static decimal sugarPrice = 0.1m;
+
         private int sugarInventory;
-        private int money;
+        private decimal money;
         Dictionary<Type, int> inventoryOfSweets = new Dictionary<Type, int>();
 
         // One lollipop's price is 10$
         // One candie's price is 20$
-
-        Dictionary<Type, int> prices = new Dictionary<Type, int>()
+        Dictionary<Type, decimal> prices = new Dictionary<Type, decimal>()
         {
-            {typeof(Candy), 20 },
-            {typeof(Lollipop), 10 }
+            {typeof(Candy), 20m },
+            {typeof(Lollipop), 10m }
         };
 
         public CandyShop(int sugar)
         {
             // The constructor should take the amount of sugar in gramms.
             sugarInventory = sugar;
+            Console.WriteLine("CandyShop created.");
+            Console.WriteLine(ToString());
         }
 
         internal void BuySugar(int sugar)
         {
-            sugarInventory += sugar;
+            // We can buy sugar with a given number as amount.
+            // If we buy sugar we can raise the CandyShop's amount of sugar and reduce the income by the price of it.
+            if(money >= sugar * sugarPrice)
+            {
+                sugarInventory += sugar;
+                money -= sugar * sugarPrice;
+                Console.WriteLine($"{sugar}g sugar bought for {sugar * sugarPrice}");
+                Console.WriteLine(ToString());
+            }
+            else
+            {
+                Console.WriteLine($"Not enough money for buying {sugar}g sugar ({sugar * sugarPrice} needed, but only {money} available).");
+                Console.WriteLine(ToString());
+            }
         }
 
         internal void CreateSweets(Sweet sweet)
         {
             // If we create a candie or lollipop the CandyShop's sugar amount gets reduced by the amount needed to create the sweets
 
-            if (inventoryOfSweets.ContainsKey(sweet.GetType()))
+            if (sugarInventory > sweet.SugarRequired)
             {
-                if (sugarInventory > sweet.SugarRequired)
+                if (!inventoryOfSweets.ContainsKey(sweet.GetType()))
                 {
-                    inventoryOfSweets[sweet.GetType()]++;
-                    sugarInventory -= sweet.SugarRequired;
+                    inventoryOfSweets[sweet.GetType()] = 0;
                 }
+                inventoryOfSweets[sweet.GetType()]++;
+                sugarInventory -= sweet.SugarRequired;
+                Console.WriteLine($"One pcs of {sweet.GetType().Name} created");
+                Console.WriteLine(ToString());
             }
             else
             {
-                inventoryOfSweets[sweet.GetType()] = 1;
+                Console.WriteLine($"No {sweet.GetType().Name} created");
+                Console.WriteLine(ToString());
             }
-
         }
 
         internal void PrintInfo()
@@ -69,16 +89,21 @@ namespace TakeMeToThe
                 {
                     inventoryOfSweets[sweet.GetType()] -= quantity;
                     money += prices[sweet.GetType()]* quantity;
+
+                    Console.WriteLine($"{quantity} pcs of {sweet.GetType().Name} sold for {prices[sweet.GetType()]*quantity}");
+                    Console.WriteLine(ToString());
+
                 }
             }
         }
 
-        internal void Raise(int raisePercentage)
+        internal void Raise(decimal raisePercentage)
         {
             // We can raise the prices of all candies and lollipops with a given percentage
 
-            prices[typeof(Candy)] *= (1 + raisePercentage);
-            prices[typeof(Lollipop)] *= (1 + raisePercentage);
+            prices[typeof(Candy)] *= (100 + raisePercentage)/100;
+            prices[typeof(Lollipop)] *= (100 + raisePercentage)/100;
+            Console.WriteLine($"The prices are raised by {raisePercentage}%, new prices are: Candy:{prices[typeof(Candy)]} and Lollipop: {prices[typeof(Lollipop)]}");
         }
 
         public override string ToString()

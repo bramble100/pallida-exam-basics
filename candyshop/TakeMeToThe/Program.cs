@@ -17,10 +17,6 @@ namespace TakeMeToThe
             // It can store sugar and money as income.
             // we can create lollipops and candies store them in the CandyShop's storage
             
-            // We can buy sugar with a given number as amount. The price of 1000gr sugar is 100$
-            // If we buy sugar we can raise the CandyShop's amount of sugar and reduce the income by the price of it.
-            // The CandyShop should print properties represented as string in this format:
-            // "Inventory: 3 candies, 2 lollipops, Income: 100, Sugar: 400gr"
             CandyShop candyShop = new CandyShop(300);
             candyShop.CreateSweets(CandyShop.CANDY);
             candyShop.CreateSweets(CandyShop.CANDY);
