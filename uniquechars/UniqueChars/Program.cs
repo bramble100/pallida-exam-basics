@@ -26,15 +26,20 @@ namespace UniqueChars
             {
                 return result;
             }
+            HashSet<char> forbiddenChars = new HashSet<char>();
             foreach (char character in inputString)
             {
-                if (result.Contains(Convert.ToString(character)))
+                if (!forbiddenChars.Contains(character))
                 {
-                    result.Remove(Convert.ToString(character));
-                }
-                else
-                {
-                    result.Add(Convert.ToString(character));
+                    if (result.Contains(Convert.ToString(character)))
+                    {
+                        result.Remove(Convert.ToString(character));
+                        forbiddenChars.Add(character);
+                    }
+                    else
+                    {
+                        result.Add(Convert.ToString(character));
+                    }
                 }
             }
             return result;
