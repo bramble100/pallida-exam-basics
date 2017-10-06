@@ -36,7 +36,7 @@ namespace UniqueChars
                         result.Remove(Convert.ToString(character));
                         forbiddenChars.Add(character);
                     }
-                    else
+                    else if(Char.IsLetter(character))
                     {
                         result.Add(Convert.ToString(character));
                     }

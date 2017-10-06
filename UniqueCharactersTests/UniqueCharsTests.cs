@@ -64,5 +64,14 @@ namespace UniqueCharactersTests
             List<string> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
             Assert.AreEqual(expectedResult, receivedResult);
         }
+
+        [Test]
+        public void InputStringMoreThanDoubleUniqueCharsWithSpaceMixedCaseSpecialChars()
+        {
+            string input = "#%(&Little";
+            List<string> expectedResult = new List<string>() { "i", "e" };
+            List<string> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
+            Assert.AreEqual(expectedResult, receivedResult);
+        }
     }
 }
