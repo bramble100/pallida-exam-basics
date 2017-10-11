@@ -13,36 +13,42 @@ namespace UniqueChars
             // Print the characters from that list in the following format:
             // "n", "g", "r", "m"
 
-            List<string> result = UniqueCharacters("doggy");
+            List<char> result = UniqueCharacters("doggy");
             result.ForEach(s => Console.WriteLine(Convert.ToString(s)));
-            
+
             Console.ReadKey();
         }
 
-        public static List<string> UniqueCharacters(string inputString)
+        public static List<char> UniqueCharacters2(string inputString)
         {
-            List<string> result = new List<string>();
+            List<char> result = new List<char>();
             if (String.IsNullOrEmpty(inputString))
             {
                 return result;
             }
             HashSet<char> forbiddenChars = new HashSet<char>();
-            foreach (char character in inputString.Replace(" ","").ToLower())
+            foreach (char character in inputString.Replace(" ", "").ToLower())
             {
-                if (!forbiddenChars.Contains(character))
+                if (forbiddenChars.Contains(character))
+                    continue;
+
+                if (result.Contains(character))
                 {
-                    if (result.Contains(Convert.ToString(character)))
-                    {
-                        result.Remove(Convert.ToString(character));
-                        forbiddenChars.Add(character);
-                    }
-                    else if(Char.IsLetter(character))
-                    {
-                        result.Add(Convert.ToString(character));
-                    }
+                    result.Remove(character);
+                    forbiddenChars.Add(character);
+                }
+                else if (Char.IsLetter(character))
+                {
+                    result.Add(character);
                 }
             }
             return result;
+        }
+
+        public static List<char> UniqueCharacters(string inputString)
+        {
+            var list = new List<char>(String.IsNullOrEmpty(inputString) ? new char[0] : inputString.Replace(" ", "").ToLower().ToCharArray());
+            return list.FindAll(c => (list.FindAll(d => d == c).Count == 1 && Char.IsLetter(c)));
         }
     }
 }
