@@ -12,11 +12,20 @@ namespace UniqueCharactersTests
     public class UniqueCharsTests
     {
         [Test]
+        public void NullInput()
+        {
+            string input = null;
+            List<char> expectedResult = new List<char>();
+            List<char> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
+            Assert.AreEqual(receivedResult, expectedResult);
+        }
+
+        [Test]
         public void EmptyInputString()
         {
             string input = "";
-            List<string> expectedResult = new List<string>();
-            List<string> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
+            List<char> expectedResult = new List<char>();
+            List<char> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
             Assert.AreEqual(receivedResult, expectedResult);
         }
 
@@ -24,8 +33,8 @@ namespace UniqueCharactersTests
         public void InputStringOnlyUniqueChars()
         {
             string input = "dog";
-            List<string> expectedResult = new List<string>() { "d", "o", "g" };
-            List<string> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
+            List<char> expectedResult = new List<char>() { 'd', 'o', 'g' };
+            List<char> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
             Assert.AreEqual(expectedResult, receivedResult);
         }
 
@@ -33,8 +42,8 @@ namespace UniqueCharactersTests
         public void InputStringDoubleUniqueChars()
         {
             string input = "doggy";
-            List<string> expectedResult = new List<string>() { "d", "o", "y" };
-            List<string> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
+            List<char> expectedResult = new List<char>() { 'd', 'o', 'y' };
+            List<char> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
             Assert.AreEqual(expectedResult, receivedResult);
         }
 
@@ -42,8 +51,8 @@ namespace UniqueCharactersTests
         public void InputStringMoreThanDoubleUniqueChars()
         {
             string input = "dogggy";
-            List<string> expectedResult = new List<string>() { "d", "o", "y" };
-            List<string> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
+            List<char> expectedResult = new List<char>() { 'd', 'o', 'y' };
+            List<char> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
             Assert.AreEqual(expectedResult, receivedResult);
         }
 
@@ -51,8 +60,8 @@ namespace UniqueCharactersTests
         public void InputStringMoreThanDoubleUniqueCharsWithSpace()
         {
             string input = "happy peace";
-            List<string> expectedResult = new List<string>() { "h", "y", "c" };
-            List<string> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
+            List<char> expectedResult = new List<char>() { 'h', 'y', 'c' };
+            List<char> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
             Assert.AreEqual(expectedResult, receivedResult);
         }
 
@@ -60,8 +69,8 @@ namespace UniqueCharactersTests
         public void InputStringMoreThanDoubleUniqueCharsWithSpaceMixedCase()
         {
             string input = "HAppy peace";
-            List<string> expectedResult = new List<string>() { "h", "y", "c" };
-            List<string> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
+            List<char> expectedResult = new List<char>() { 'h', 'y', 'c' };
+            List<char> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
             Assert.AreEqual(expectedResult, receivedResult);
         }
 
@@ -69,8 +78,8 @@ namespace UniqueCharactersTests
         public void InputStringMoreThanDoubleUniqueCharsWithSpaceMixedCaseSpecialChars()
         {
             string input = "#%(&Little";
-            List<string> expectedResult = new List<string>() { "i", "e" };
-            List<string> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
+            List<char> expectedResult = new List<char>() { 'i', 'e' };
+            List<char> receivedResult = UniqueChars.UniqueChars.UniqueCharacters(input);
             Assert.AreEqual(expectedResult, receivedResult);
         }
     }
